@@ -37,13 +37,26 @@
 <script>
   const hero = document.querySelector('.hero');
   const text = hero.querySelector('h1');
+  const walk = 100;
 
   function shadow(e) {
     console.log(e);
     const width = hero.offsetWidth;
     const height = hero.offsetHeight;
 
-    
+    let currentX = e.offsetX;
+    let currentY = e.offsetY;
+
+    if (this !== e.target) {
+      currentX = currentX + e.target.offsetLeft;
+      currentY = currentY + e.target.offsetTop;
+    }
+
+    const xWalk = Math.round((currentX/width * walk) - (walk/2));
+    const yWalk = Math.round((currentY/height * walk) - (walk/2));
+
+    text.style.textShadow = `${xWalk}px ${yWalk}px 0 lightgreen`;
+
   }
 
   hero.addEventListener('mousemove', shadow);
