@@ -41,9 +41,18 @@
 <script>
   const divs = document.querySelectorAll('div');
 
-  function logText() {
-
+  function logText(e) {
+    e.stopPropagation();
+    console.log(this.classList.value);
   }
+
+  divs.forEach( div => div.addEventListener('click', logText));
+
+
+  // Once unbinds the event listener after it has triggered once
+  // divs.forEach( div => div.addEventListener('click', logText, {
+  //   once: true,
+  // }))
 </script>
 </body>
 </html>
